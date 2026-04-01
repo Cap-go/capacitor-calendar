@@ -13,6 +13,11 @@ Arguments:
   GitHubOrg     Optional, repository org/user (default: Cap-go)
   android-lang  Optional, Android language: java or kotlin (default: java)
 
+Notes:
+  If your GitHub org/user is literally "java" or "kotlin", pass the language as the
+  5th argument to disambiguate. Example:
+    bun run init-plugin foo Foo app.capgo.foo kotlin java
+
 Example:
   bun run init-plugin downloader CapacitorDownloader app.capgo.downloader Cap-go kotlin
 USAGE

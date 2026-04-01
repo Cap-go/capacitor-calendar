@@ -54,8 +54,10 @@ copy_kotlin_template() {
 write_kotlin_android_sources() {
   local template_root="scripts/templates/kotlin/android/src/main/kotlin"
   local kotlin_dir="android/src/main/kotlin/$package_path"
+  local template_java_dir="android/src/main/java/app/capgo/plugintemplate"
 
-  rm -rf "android/src/main/java"
+  mkdir -p "$kotlin_dir"
+  rm -rf "$template_java_dir"
   copy_kotlin_template "$template_root/PluginTemplate.kt.template" "$kotlin_dir/${class_name}.kt"
   copy_kotlin_template "$template_root/PluginTemplatePlugin.kt.template" "$kotlin_dir/${plugin_class_name}.kt"
 }

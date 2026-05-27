@@ -50,7 +50,7 @@ npx cap sync
 
 |                                                     iOS                                                     |                                                       Android                                                       |
 | :---------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
-| ![iOS screenshot of the @capgo/capacitor-calendar example app](assets/screenshots/ios-calendar-example.png) | ![Android screenshot of the @capgo/capacitor-calendar example app](assets/screenshots/android-calendar-example.png) |
+|        ![iOS demo of native calendar event creation](assets/demo/ios-demo.gif)        |        ![Android demo of native calendar event creation](assets/demo/android-demo.gif)        |
 
 ## Setup
 

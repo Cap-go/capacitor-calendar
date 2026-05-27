@@ -3,20 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@capgo/capacitor-plugin-template Example</title>
+    <title>@capgo/capacitor-calendar Example</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <main class="container">
-      <h1>@capgo/capacitor-plugin-template</h1>
-      <p class="lead">Quickly validate the template plugin wiring.</p>
+      <h1>@capgo/capacitor-calendar</h1>
+      <p class="lead">Calendar and reminder bridge smoke test.</p>
 
-      <label for="echo-value">Echo value</label>
-      <input id="echo-value" type="text" value="Hello from example app" />
+      <label for="event-title">Event title</label>
+      <input id="event-title" type="text" value="Capgo calendar test" />
 
       <div class="actions">
-        <button id="run-echo">Run echo</button>
-        <button id="get-version">Get plugin version</button>
+        <button id="check-permissions">Check permissions</button>
+        <button id="request-calendar">Request calendar</button>
+        <button id="create-event">Create event</button>
+        <button id="create-event-prompt">Open create UI</button>
+        <button id="list-calendars">List calendars</button>
+        <button id="list-events">List week</button>
       </div>
 
       <pre id="plugin-output">Press a button to run an action.</pre>

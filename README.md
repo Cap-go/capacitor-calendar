@@ -1,273 +1,745 @@
-# @capgo/capacitor-plugin-template
+# @capgo/capacitor-calendar
 
-<a href="https://capgo.app/"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-plugin-template" alt="Capgo - Instant updates for Capacitor" /></a>
+<a href="https://capgo.app/"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-calendar" alt="Capgo - Instant updates for Capacitor" /></a>
 
 <div align="center">
-  <h2><a href="https://capgo.app/?ref=plugin_{{PLUGIN_REF_SLUG}}"> ➡️ Get Instant updates for your App with Capgo</a></h2>
-  <h2><a href="https://capgo.app/consulting/?ref=plugin_{{PLUGIN_REF_SLUG}}"> Missing a feature? We’ll build the plugin for you 💪</a></h2>
+  <h2><a href="https://capgo.app/?ref=plugin_calendar">Get Instant updates for your App with Capgo</a></h2>
+  <h2><a href="https://capgo.app/consulting/?ref=plugin_calendar">Missing a feature? We'll build the plugin for you</a></h2>
 </div>
 
-> Template README. Replace every `{{PLACEHOLDER}}` value before releasing.
+Capacitor plugin for managing calendar events on iOS and Android, with reminders support on iOS.
 
-## Snapshot
-
-- **Plugin name:** `{{PLUGIN_DISPLAY_NAME}}`
-- **One-line value:** `{{PLUGIN_TAGLINE}}`
-- **Maintainer:** `{{MAINTAINER_OR_TEAM}}`
-- **Status:** `{{alpha|beta|stable}}`
-
-## Pre-Release Checklist
-
-- [ ] Replace all `{{PLACEHOLDER}}` values in this README.
-- [ ] Replace `{{PLUGIN_REF_SLUG}}` in Capgo CTA links (example: `native_audio`).
-- [ ] Confirm the README banner image uses `https://capgo.app/readme-banner.svg?repo=<GitHubOrg>/capacitor-{{PLUGIN_SLUG}}`.
-- [ ] Replace all `__AI_KEYWORD_*__` entries in `package.json`.
-- [ ] Change git remote away from this template before first push:
-  `git remote set-url origin git@github.com:Cap-go/capacitor-{{PLUGIN_SLUG}}.git`
-- [ ] Remove bootstrap-only init script from generated plugin copy:
-  delete `scripts/init-plugin.sh`, delete `scripts/templates/`, and remove `"init-plugin"` from `package.json` scripts.
-- [ ] Update the compatibility table for this plugin.
-- [ ] Update `src/definitions.ts` with the real public API and JSDoc.
-- [ ] Run `bun run docgen` and review generated API docs below.
-- [ ] Confirm examples in this file run against the real implementation.
-- [ ] Set GitHub repo description to start with `Capacitor plugin for ...`.
-- [ ] Set GitHub repo homepage to `https://capgo.app/docs/plugins/{{PLUGIN_SLUG}}/`.
-- [ ] Open docs/website PR and follow the complete website integration checklist in section **3) Open docs/website pull request**.
-- [ ] Run `bun run verify` before publishing.
-
-## Problem & Scope
-
-### Why this plugin exists
-
-`{{WHAT_PAIN_POINT_IT_SOLVES}}`
-
-## Capgo Links
-
-- **Plugin docs URL:** `https://capgo.app/docs/plugins/{{PLUGIN_SLUG}}/`
-- **Plugin tutorial URL:** `{{PLUGIN_TUTORIAL_URL}}`
-- **Website/docs repo:** `https://github.com/Cap-go/website`
-
-### What it does
-
-- `{{CAPABILITY_1}}`
-- `{{CAPABILITY_2}}`
-- `{{CAPABILITY_3}}`
-
-### What it does not do
-
-- `{{OUT_OF_SCOPE_1}}`
-- `{{OUT_OF_SCOPE_2}}`
-
-## Compatibility
-
-| Plugin version | Capacitor compatibility | Maintained |
-| -------------- | ----------------------- | ---------- |
-| v8.\*.\*       | v8.\*.\*                | ✅          |
-| v7.\*.\*       | v7.\*.\*                | On demand   |
-| v6.\*.\*       | v6.\*.\*                | On demand   |
-
-Policy:
-
-- New plugins start at version `8.0.0` (Capacitor 8 baseline).
-- Backward compatibility for older Capacitor majors is supported on demand.
-
-## Quick Start (Template Authors)
-
-```bash
-bun install
-bun run init-plugin your-plugin YourPlugin app.capgo.yourplugin
-# Optional Kotlin Android variant:
-# bun run init-plugin your-plugin YourPlugin app.capgo.yourplugin Cap-go kotlin
-bun run verify
-```
-
-The `init-plugin` command updates package names, native class names, iOS/Android identifiers, and the local example app wiring.
-It accepts an optional fifth `android-lang` argument and defaults to `java`; pass `kotlin` to generate Kotlin Android sources and Gradle setup.
-To use Kotlin while keeping the default GitHub org, pass `Cap-go` as the 4th argument and `kotlin` as the 5th argument.
-
-After running `init-plugin` in your new plugin copy:
-
-```bash
-git remote set-url origin git@github.com:Cap-go/capacitor-your-plugin.git
-rm scripts/init-plugin.sh
-rm -rf scripts/templates
-```
-
-Then remove `"init-plugin"` from the `scripts` section in `package.json` before publishing.
-
-## Capacitor Hook Scripts (Recommended)
-
-For plugins that need automated setup during `cap sync` / `cap update`, define Capacitor lifecycle hooks in `package.json`.
-
-Example:
-
-```json
-{
-  "scripts": {
-    "generate:version-share": "bun run scripts/generate-version-share-data.mjs",
-    "configure:dependencies": "bun run scripts/configure-dependencies.mjs",
-    "capacitor:sync:before": "bun run generate:version-share",
-    "capacitor:update:before": "bun run generate:version-share",
-    "capacitor:sync:after": "bun run configure:dependencies"
-  }
-}
-```
-
-Guideline:
-- Use `*:before` for generated inputs needed by native sync/update.
-- Use `*:after` for native patching that depends on files created by sync/update.
-- Keep hook scripts idempotent.
-
-## Public Launch (Required)
-
-### 1) Publish in Capgo GitHub org as public
-
-```bash
-gh repo create Cap-go/capacitor-{{PLUGIN_SLUG}} --public --source=. --remote=origin --push
-```
-
-If the repo already exists and is private:
-
-```bash
-gh repo edit Cap-go/capacitor-{{PLUGIN_SLUG}} --visibility public --accept-visibility-change-consequences
-```
-
-### 2) Set GitHub description and homepage
-
-Description must always start with: `Capacitor plugin for ...`
-
-```bash
-gh repo edit Cap-go/capacitor-{{PLUGIN_SLUG}} \
-  --description "Capacitor plugin for {{SHORT_USE_CASE}}." \
-  --homepage "https://capgo.app/docs/plugins/{{PLUGIN_SLUG}}/"
-```
-
-### 3) Open docs/website pull request
-
-Create a PR on `https://github.com/Cap-go/website` (or the local `landing/` folder in the monorepo) with all of the following:
-
-1. Add the plugin entry in `src/config/plugins.ts`.
-2. Add a plugin `LinkCard` in `src/content/docs/docs/plugins/index.mdx`.
-3. Create docs pages in `src/content/docs/docs/plugins/<plugin-doc-slug>/`:
-   `index.mdx`, `getting-started.mdx`, and optionally `ios.mdx` + `android.mdx` when platform setup differs.
-4. Update `astro.config.mjs`:
-   add `docs/plugins/<plugin-doc-slug>/**` in pagefind path buckets and add a sidebar section for the plugin pages.
-5. Add the SEO tutorial page in `src/content/plugins-tutorials/en/<plugin-repo-slug>.md`.
-6. Add icon asset `public/icons/plugins/<plugin-doc-slug>.svg` if the docs hero uses a plugin icon.
-7. Cross-link docs and tutorial pages.
-
-Slug mapping rules:
-
-- `<plugin-doc-slug>` is the docs route slug used under `/docs/plugins/<plugin-doc-slug>/`.
-- `<plugin-repo-slug>` is extracted from the GitHub repo URL in `src/config/plugins.ts` and is used by `/plugins/<slug>/`.
-- Example: repo `https://github.com/Cap-go/capacitor-app-attest/` requires tutorial file
-  `src/content/plugins-tutorials/en/capacitor-app-attest.md`.
-
-Starter snippets:
-
-`src/config/plugins.ts`
-
-```ts
-{
-  name: '@capgo/capacitor-{{PLUGIN_SLUG}}',
-  author: 'github.com/Cap-go',
-  description: 'Capacitor plugin for {{SHORT_USE_CASE}}',
-  href: 'https://github.com/Cap-go/capacitor-{{PLUGIN_SLUG}}/',
-  title: '{{PLUGIN_DISPLAY_NAME}}',
-  icon: ShieldCheckIcon,
-},
-```
-
-`astro.config.mjs` sidebar entry
-
-```ts
-{
-  label: '{{PLUGIN_DISPLAY_NAME}}',
-  items: [
-    { label: 'Overview', link: '/docs/plugins/<plugin-doc-slug>/' },
-    { label: 'Getting started', link: '/docs/plugins/<plugin-doc-slug>/getting-started' },
-    { label: 'iOS setup', link: '/docs/plugins/<plugin-doc-slug>/ios' },
-    { label: 'Android setup', link: '/docs/plugins/<plugin-doc-slug>/android' },
-  ],
-  collapsed: true,
-},
-```
-
-Required docs files:
-
-- `src/content/docs/docs/plugins/<plugin-doc-slug>/index.mdx`
-- `src/content/docs/docs/plugins/<plugin-doc-slug>/getting-started.mdx`
-- `src/content/docs/docs/plugins/<plugin-doc-slug>/ios.mdx` (if iOS-specific setup exists)
-- `src/content/docs/docs/plugins/<plugin-doc-slug>/android.mdx` (if Android-specific setup exists)
-- `src/content/plugins-tutorials/en/<plugin-repo-slug>.md`
+This package is a Capgo-maintained version of the calendar plugin originally built by Ehsan Barooni, ported onto the Capgo Capacitor plugin template.
 
 ## Install
 
 ```bash
-bun add @capgo/capacitor-plugin-template
-bunx cap sync
+npm install @capgo/capacitor-calendar
+npx cap sync
 ```
 
-## Minimal Usage
+## Setup
+
+### iOS
+
+Add the usage descriptions your app needs to `ios/App/App/Info.plist`:
+
+```xml
+<key>NSCalendarsUsageDescription</key>
+<string>This app needs calendar access.</string>
+<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+<string>This app needs permission to add calendar events.</string>
+<key>NSCalendarsFullAccessUsageDescription</key>
+<string>This app needs permission to read and manage calendar events.</string>
+<key>NSRemindersUsageDescription</key>
+<string>This app needs reminders access.</string>
+<key>NSRemindersFullAccessUsageDescription</key>
+<string>This app needs permission to read and manage reminders.</string>
+```
+
+### Android
+
+Add the permissions your app needs to `android/app/src/main/AndroidManifest.xml`:
+
+```xml
+<uses-permission android:name="android.permission.READ_CALENDAR" />
+<uses-permission android:name="android.permission.WRITE_CALENDAR" />
+```
+
+Then request the matching permission at runtime before reading or writing calendar data.
+
+## Usage
 
 ```typescript
-import { PluginTemplate } from '@capgo/capacitor-plugin-template';
+import { CapacitorCalendar, CalendarPermissionScope } from '@capgo/capacitor-calendar';
 
-const result = await PluginTemplate.echo({ value: 'Hello from Capgo' });
-console.log(result.value);
+const permission = await CapacitorCalendar.requestPermission({
+  scope: CalendarPermissionScope.WRITE_CALENDAR,
+});
+
+if (permission.result === 'granted') {
+  const event = await CapacitorCalendar.createEvent({
+    title: 'Product review',
+    startDate: Date.now() + 60 * 60 * 1000,
+    endDate: Date.now() + 2 * 60 * 60 * 1000,
+  });
+
+  console.log(event.id);
+}
 ```
 
-## Integration Notes
+## Platform Support
 
-- **iOS:** `{{IOS_NOTES_OR_PERMISSIONS}}`
-- **Android:** `{{ANDROID_NOTES_OR_PERMISSIONS}}`
-- **Web:** `{{WEB_LIMITATIONS_OR_BEHAVIOR}}`
+| Feature | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Calendar permissions | Yes | Yes | No |
+| Calendar event CRUD | Yes | Yes | No |
+| Calendar picker UI | Yes | No | No |
+| Reminder CRUD | Yes | No | No |
 
-## Example App
+## Compatibility
 
-The `example-app/` folder is linked via `file:..` and is intended for validating native wiring during development.
+| Plugin version | Capacitor compatibility | Maintained |
+| --- | --- | --- |
+| v8.*.* | v8.*.* | Yes |
 
 ## API
 
 <docgen-index>
 
-* [`echo(...)`](#echo)
-* [`getPluginVersion()`](#getpluginversion)
+* [`checkPermission(...)`](#checkpermission)
+* [`checkAllPermissions()`](#checkallpermissions)
+* [`requestPermission(...)`](#requestpermission)
+* [`requestAllPermissions()`](#requestallpermissions)
+* [`requestWriteOnlyCalendarAccess()`](#requestwriteonlycalendaraccess)
+* [`requestReadOnlyCalendarAccess()`](#requestreadonlycalendaraccess)
+* [`requestFullCalendarAccess()`](#requestfullcalendaraccess)
+* [`requestFullRemindersAccess()`](#requestfullremindersaccess)
+* [`createEventWithPrompt(...)`](#createeventwithprompt)
+* [`modifyEventWithPrompt(...)`](#modifyeventwithprompt)
+* [`createEvent(...)`](#createevent)
+* [`modifyEvent(...)`](#modifyevent)
+* [`deleteEventsById(...)`](#deleteeventsbyid)
+* [`deleteEvent(...)`](#deleteevent)
+* [`deleteEventWithPrompt(...)`](#deleteeventwithprompt)
+* [`listEventsInRange(...)`](#listeventsinrange)
+* [`commit()`](#commit)
+* [`selectCalendarsWithPrompt(...)`](#selectcalendarswithprompt)
+* [`fetchAllCalendarSources()`](#fetchallcalendarsources)
+* [`listCalendars()`](#listcalendars)
+* [`getDefaultCalendar()`](#getdefaultcalendar)
+* [`openCalendar(...)`](#opencalendar)
+* [`createCalendar(...)`](#createcalendar)
+* [`deleteCalendar(...)`](#deletecalendar)
+* [`modifyCalendar(...)`](#modifycalendar)
+* [`fetchAllRemindersSources()`](#fetchallreminderssources)
+* [`openReminders()`](#openreminders)
+* [`getDefaultRemindersList()`](#getdefaultreminderslist)
+* [`getRemindersLists()`](#getreminderslists)
+* [`createReminder(...)`](#createreminder)
+* [`deleteRemindersById(...)`](#deleteremindersbyid)
+* [`deleteReminder(...)`](#deletereminder)
+* [`modifyReminder(...)`](#modifyreminder)
+* [`getReminderById(...)`](#getreminderbyid)
+* [`getRemindersFromLists(...)`](#getremindersfromlists)
+* [`deleteReminderWithPrompt(...)`](#deletereminderwithprompt)
 * [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
+* [Enums](#enums)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-Base API used by the template plugin.
-
-### echo(...)
+### checkPermission(...)
 
 ```typescript
-echo(options: EchoOptions) => Promise<EchoResult>
+checkPermission(options: { scope: CalendarPermissionScope; }) => Promise<{ result: PermissionState; }>
 ```
 
-Echo a string to validate JS &lt;-&gt; native wiring.
+Retrieves the current permission state for a given scope.
 
-| Param         | Type                                                |
-| ------------- | --------------------------------------------------- |
-| **`options`** | <code><a href="#echooptions">EchoOptions</a></code> |
+| Param         | Type                                                                                    |
+| ------------- | --------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ scope: <a href="#calendarpermissionscope">CalendarPermissionScope</a>; }</code> |
 
-**Returns:** <code>Promise&lt;<a href="#echoresult">EchoResult</a>&gt;</code>
+**Returns:** <code>Promise&lt;{ result: <a href="#permissionstate">PermissionState</a>; }&gt;</code>
+
+**Since:** 0.1.0
 
 --------------------
 
 
-### getPluginVersion()
+### checkAllPermissions()
 
 ```typescript
-getPluginVersion() => Promise<PluginVersionResult>
+checkAllPermissions() => Promise<{ result: CheckAllPermissionsResult; }>
 ```
 
-Returns the platform implementation version marker.
+Retrieves the current state of all permissions.
 
-**Returns:** <code>Promise&lt;<a href="#pluginversionresult">PluginVersionResult</a>&gt;</code>
+**Returns:** <code>Promise&lt;{ result: <a href="#checkallpermissionsresult">CheckAllPermissionsResult</a>; }&gt;</code>
+
+**Since:** 0.1.0
+
+--------------------
+
+
+### requestPermission(...)
+
+```typescript
+requestPermission(options: { scope: CalendarPermissionScope; }) => Promise<{ result: PermissionState; }>
+```
+
+Requests permission for a given scope.
+
+| Param         | Type                                                                                    |
+| ------------- | --------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ scope: <a href="#calendarpermissionscope">CalendarPermissionScope</a>; }</code> |
+
+**Returns:** <code>Promise&lt;{ result: <a href="#permissionstate">PermissionState</a>; }&gt;</code>
+
+**Since:** 0.1.0
+
+--------------------
+
+
+### requestAllPermissions()
+
+```typescript
+requestAllPermissions() => Promise<{ result: RequestAllPermissionsResult; }>
+```
+
+Requests permission for all calendar and reminder permissions.
+
+**Returns:** <code>Promise&lt;{ result: <a href="#checkallpermissionsresult">CheckAllPermissionsResult</a>; }&gt;</code>
+
+**Since:** 0.1.0
+
+--------------------
+
+
+### requestWriteOnlyCalendarAccess()
+
+```typescript
+requestWriteOnlyCalendarAccess() => Promise<{ result: PermissionState; }>
+```
+
+Requests write access to the calendar.
+
+**Returns:** <code>Promise&lt;{ result: <a href="#permissionstate">PermissionState</a>; }&gt;</code>
+
+**Since:** 5.4.0
+
+--------------------
+
+
+### requestReadOnlyCalendarAccess()
+
+```typescript
+requestReadOnlyCalendarAccess() => Promise<{ result: PermissionState; }>
+```
+
+Requests read access to the calendar.
+
+**Returns:** <code>Promise&lt;{ result: <a href="#permissionstate">PermissionState</a>; }&gt;</code>
+
+**Since:** 5.4.0
+
+--------------------
+
+
+### requestFullCalendarAccess()
+
+```typescript
+requestFullCalendarAccess() => Promise<{ result: PermissionState; }>
+```
+
+Requests read and write access to the calendar.
+
+**Returns:** <code>Promise&lt;{ result: <a href="#permissionstate">PermissionState</a>; }&gt;</code>
+
+**Since:** 5.4.0
+
+--------------------
+
+
+### requestFullRemindersAccess()
+
+```typescript
+requestFullRemindersAccess() => Promise<{ result: PermissionState; }>
+```
+
+Requests read and write access to reminders.
+
+**Returns:** <code>Promise&lt;{ result: <a href="#permissionstate">PermissionState</a>; }&gt;</code>
+
+**Since:** 5.4.0
+
+--------------------
+
+
+### createEventWithPrompt(...)
+
+```typescript
+createEventWithPrompt(options?: CreateEventWithPromptOptions | undefined) => Promise<{ id: string | null; }>
+```
+
+Opens the system calendar interface to create a new event.
+On Android this always returns `null`; fetch events to find the newly created event ID.
+
+| Param         | Type                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#createeventwithpromptoptions">CreateEventWithPromptOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ id: string | null; }&gt;</code>
+
+**Since:** 0.1.0
+
+--------------------
+
+
+### modifyEventWithPrompt(...)
+
+```typescript
+modifyEventWithPrompt(options: ModifyEventWithPromptOptions) => Promise<{ result: EventEditAction | null; }>
+```
+
+Opens a system calendar interface to modify an event.
+On Android this always returns `null`.
+
+| Param         | Type                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#modifyeventwithpromptoptions">ModifyEventWithPromptOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ result: <a href="#eventeditaction">EventEditAction</a> | null; }&gt;</code>
+
+**Since:** 6.6.0
+
+--------------------
+
+
+### createEvent(...)
+
+```typescript
+createEvent(options: CreateEventOptions) => Promise<{ id: string; }>
+```
+
+Creates an event in the calendar.
+
+| Param         | Type                                                              |
+| ------------- | ----------------------------------------------------------------- |
+| **`options`** | <code><a href="#createeventoptions">CreateEventOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ id: string; }&gt;</code>
+
+**Since:** 0.4.0
+
+--------------------
+
+
+### modifyEvent(...)
+
+```typescript
+modifyEvent(options: ModifyEventOptions) => Promise<void>
+```
+
+Modifies an event.
+
+| Param         | Type                                                              |
+| ------------- | ----------------------------------------------------------------- |
+| **`options`** | <code><a href="#modifyeventoptions">ModifyEventOptions</a></code> |
+
+**Since:** 6.6.0
+
+--------------------
+
+
+### deleteEventsById(...)
+
+```typescript
+deleteEventsById(options: DeleteEventsByIdOptions) => Promise<{ result: DeleteEventsByIdResult; }>
+```
+
+Deletes multiple events.
+
+| Param         | Type                                                                        |
+| ------------- | --------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#deleteeventsbyidoptions">DeleteEventsByIdOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ result: <a href="#deleteeventsbyidresult">DeleteEventsByIdResult</a>; }&gt;</code>
+
+**Since:** 0.11.0
+
+--------------------
+
+
+### deleteEvent(...)
+
+```typescript
+deleteEvent(options: DeleteEventOptions) => Promise<void>
+```
+
+Deletes an event.
+
+| Param         | Type                                                              |
+| ------------- | ----------------------------------------------------------------- |
+| **`options`** | <code><a href="#deleteeventoptions">DeleteEventOptions</a></code> |
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### deleteEventWithPrompt(...)
+
+```typescript
+deleteEventWithPrompt(options: DeleteEventWithPromptOptions) => Promise<{ deleted: boolean; }>
+```
+
+Opens a dialog to delete an event.
+
+| Param         | Type                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#deleteeventwithpromptoptions">DeleteEventWithPromptOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ deleted: boolean; }&gt;</code>
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### listEventsInRange(...)
+
+```typescript
+listEventsInRange(options: ListEventsInRangeOptions) => Promise<{ result: CalendarEvent[]; }>
+```
+
+Retrieves events within a date range.
+
+| Param         | Type                                                                          |
+| ------------- | ----------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#listeventsinrangeoptions">ListEventsInRangeOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ result: CalendarEvent[]; }&gt;</code>
+
+**Since:** 0.10.0
+
+--------------------
+
+
+### commit()
+
+```typescript
+commit() => Promise<void>
+```
+
+Saves pending iOS calendar changes.
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### selectCalendarsWithPrompt(...)
+
+```typescript
+selectCalendarsWithPrompt(options?: SelectCalendarsWithPromptOptions | undefined) => Promise<{ result: Calendar[]; }>
+```
+
+Opens a system interface to choose one or multiple calendars.
+
+| Param         | Type                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#selectcalendarswithpromptoptions">SelectCalendarsWithPromptOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ result: Calendar[]; }&gt;</code>
+
+**Since:** 0.2.0
+
+--------------------
+
+
+### fetchAllCalendarSources()
+
+```typescript
+fetchAllCalendarSources() => Promise<{ result: CalendarSource[]; }>
+```
+
+Retrieves a list of calendar sources.
+
+**Returns:** <code>Promise&lt;{ result: CalendarSource[]; }&gt;</code>
+
+**Since:** 6.6.0
+
+--------------------
+
+
+### listCalendars()
+
+```typescript
+listCalendars() => Promise<{ result: Calendar[]; }>
+```
+
+Retrieves all available calendars.
+
+**Returns:** <code>Promise&lt;{ result: Calendar[]; }&gt;</code>
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### getDefaultCalendar()
+
+```typescript
+getDefaultCalendar() => Promise<{ result: Calendar | null; }>
+```
+
+Retrieves the default calendar.
+
+**Returns:** <code>Promise&lt;{ result: <a href="#calendar">Calendar</a> | null; }&gt;</code>
+
+**Since:** 0.3.0
+
+--------------------
+
+
+### openCalendar(...)
+
+```typescript
+openCalendar(options?: OpenCalendarOptions | undefined) => Promise<void>
+```
+
+Opens the calendar app.
+
+| Param         | Type                                                                |
+| ------------- | ------------------------------------------------------------------- |
+| **`options`** | <code><a href="#opencalendaroptions">OpenCalendarOptions</a></code> |
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### createCalendar(...)
+
+```typescript
+createCalendar(options: CreateCalendarOptions) => Promise<{ id: string; }>
+```
+
+Creates a calendar.
+
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code><a href="#createcalendaroptions">CreateCalendarOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ id: string; }&gt;</code>
+
+**Since:** 5.2.0
+
+--------------------
+
+
+### deleteCalendar(...)
+
+```typescript
+deleteCalendar(options: DeleteCalendarOptions) => Promise<void>
+```
+
+Deletes a calendar by ID.
+
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code><a href="#deletecalendaroptions">DeleteCalendarOptions</a></code> |
+
+**Since:** 5.2.0
+
+--------------------
+
+
+### modifyCalendar(...)
+
+```typescript
+modifyCalendar(options: ModifyCalendarOptions) => Promise<void>
+```
+
+Modifies a calendar.
+
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code><a href="#modifycalendaroptions">ModifyCalendarOptions</a></code> |
+
+**Since:** 7.2.0
+
+--------------------
+
+
+### fetchAllRemindersSources()
+
+```typescript
+fetchAllRemindersSources() => Promise<{ result: CalendarSource[]; }>
+```
+
+Retrieves a list of reminder sources.
+
+**Returns:** <code>Promise&lt;{ result: CalendarSource[]; }&gt;</code>
+
+**Since:** 6.6.0
+
+--------------------
+
+
+### openReminders()
+
+```typescript
+openReminders() => Promise<void>
+```
+
+Opens the reminders app.
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### getDefaultRemindersList()
+
+```typescript
+getDefaultRemindersList() => Promise<{ result: RemindersList | null; }>
+```
+
+Retrieves the default reminders list.
+
+**Returns:** <code>Promise&lt;{ result: <a href="#calendar">Calendar</a> | null; }&gt;</code>
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### getRemindersLists()
+
+```typescript
+getRemindersLists() => Promise<{ result: RemindersList[]; }>
+```
+
+Retrieves all available reminders lists.
+
+**Returns:** <code>Promise&lt;{ result: Calendar[]; }&gt;</code>
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### createReminder(...)
+
+```typescript
+createReminder(options: CreateReminderOptions) => Promise<{ id: string; }>
+```
+
+Creates a reminder.
+
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code><a href="#createreminderoptions">CreateReminderOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ id: string; }&gt;</code>
+
+**Since:** 0.5.0
+
+--------------------
+
+
+### deleteRemindersById(...)
+
+```typescript
+deleteRemindersById(options: DeleteRemindersByIdOptions) => Promise<{ result: DeleteRemindersByIdResult; }>
+```
+
+Deletes multiple reminders.
+
+| Param         | Type                                                                              |
+| ------------- | --------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#deleteremindersbyidoptions">DeleteRemindersByIdOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ result: <a href="#deleteremindersbyidresult">DeleteRemindersByIdResult</a>; }&gt;</code>
+
+**Since:** 5.3.0
+
+--------------------
+
+
+### deleteReminder(...)
+
+```typescript
+deleteReminder(options: DeleteReminderOptions) => Promise<void>
+```
+
+Deletes a reminder.
+
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code><a href="#deletereminderoptions">DeleteReminderOptions</a></code> |
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### modifyReminder(...)
+
+```typescript
+modifyReminder(options: ModifyReminderOptions) => Promise<void>
+```
+
+Modifies a reminder.
+
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code><a href="#modifyreminderoptions">ModifyReminderOptions</a></code> |
+
+**Since:** 6.7.0
+
+--------------------
+
+
+### getReminderById(...)
+
+```typescript
+getReminderById(options: GetReminderByIdOptions) => Promise<{ result: Reminder | null; }>
+```
+
+Retrieves a reminder by ID.
+
+| Param         | Type                                                                      |
+| ------------- | ------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#getreminderbyidoptions">GetReminderByIdOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ result: <a href="#reminder">Reminder</a> | null; }&gt;</code>
+
+**Since:** 7.1.0
+
+--------------------
+
+
+### getRemindersFromLists(...)
+
+```typescript
+getRemindersFromLists(options: GetRemindersFromListsOptions) => Promise<{ result: Reminder[]; }>
+```
+
+Retrieves reminders from multiple lists.
+
+| Param         | Type                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#getremindersfromlistsoptions">GetRemindersFromListsOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ result: Reminder[]; }&gt;</code>
+
+**Since:** 5.3.0
+
+--------------------
+
+
+### deleteReminderWithPrompt(...)
+
+```typescript
+deleteReminderWithPrompt(options: DeleteReminderWithPromptOptions) => Promise<{ deleted: boolean; }>
+```
+
+Opens a dialog to delete a reminder.
+
+| Param         | Type                                                                                        |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#deletereminderwithpromptoptions">DeleteReminderWithPromptOptions</a></code> |
+
+**Returns:** <code>Promise&lt;{ deleted: boolean; }&gt;</code>
+
+**Since:** 7.2.0
 
 --------------------
 
@@ -275,30 +747,512 @@ Returns the platform implementation version marker.
 ### Interfaces
 
 
-#### EchoResult
+#### CreateEventWithPromptOptions
 
-Echo response payload.
+| Prop               | Type                                                                | Description                                                                                                                                                                                      | Since |
+| ------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- |
+| **`alerts`**       | <code>number[]</code>                                               | Alert times in minutes relative to the event start. Use negative numbers for reminders before the start, and positive numbers for reminders after the start. On iOS only 2 alerts are supported. | 7.1.0 |
+| **`availability`** | <code><a href="#eventavailability">EventAvailability</a></code>     |                                                                                                                                                                                                  | 7.1.0 |
+| **`calendarId`**   | <code>string</code>                                                 |                                                                                                                                                                                                  | 0.1.0 |
+| **`description`**  | <code>string</code>                                                 |                                                                                                                                                                                                  | 7.1.0 |
+| **`endDate`**      | <code>number</code>                                                 |                                                                                                                                                                                                  | 0.1.0 |
+| **`invitees`**     | <code>string[]</code>                                               | An array of emails to invite.                                                                                                                                                                    | 7.1.0 |
+| **`isAllDay`**     | <code>boolean</code>                                                |                                                                                                                                                                                                  | 0.1.0 |
+| **`location`**     | <code>string</code>                                                 |                                                                                                                                                                                                  | 0.1.0 |
+| **`recurrence`**   | <code><a href="#eventrecurrencerule">EventRecurrenceRule</a></code> | Rules for creating a recurring event.                                                                                                                                                            | 7.3.0 |
+| **`startDate`**    | <code>number</code>                                                 |                                                                                                                                                                                                  | 0.1.0 |
+| **`title`**        | <code>string</code>                                                 |                                                                                                                                                                                                  | 0.1.0 |
+| **`url`**          | <code>string</code>                                                 |                                                                                                                                                                                                  | 0.1.0 |
 
-| Prop        | Type                | Description                      |
-| ----------- | ------------------- | -------------------------------- |
-| **`value`** | <code>string</code> | The same value passed to `echo`. |
+
+#### EventRecurrenceRule
+
+| Prop                 | Type                                                                | Description                                                                                                                                                             | Default        | Since |
+| -------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ----- |
+| **`byMonth`**        | <code>number[]</code>                                               | Limits a yearly recurrence to specific months of the year. The values should be between 1 and 12.                                                                       |                | 7.1.0 |
+| **`byMonthDay`**     | <code>number[]</code>                                               | Limits a monthly recurrence to specific days of the month. The values should be between 1 and 31.                                                                       |                | 7.1.0 |
+| **`byWeekDay`**      | <code>number[]</code>                                               | Limits a weekly recurrence to specific weekdays. The values should be between 1 and 7. 1 means Monday and 7 means Sunday.                                               |                | 7.3.0 |
+| **`count`**          | <code>number</code>                                                 | The total number of occurrences. If set, the recurrence ends after this many occurrences. If `count` is provided, `end` is ignored.                                     |                | 7.3.0 |
+| **`daysOfTheYear`**  | <code>number[]</code>                                               | Limits a yearly recurrence to specific days of the year (1 to 366).                                                                                                     |                | 7.3.0 |
+| **`end`**            | <code>number</code>                                                 | End date of the recurrence series as a Unix timestamp in milliseconds.                                                                                                  |                | 7.1.0 |
+| **`frequency`**      | <code><a href="#recurrencefrequency">RecurrenceFrequency</a></code> | How often the event repeats.                                                                                                                                            |                | 7.3.0 |
+| **`interval`**       | <code>number</code>                                                 | The interval between recurrences. Use in combination with `frequency`. For example, a weekly event with an interval of 2, results in the event occurring every 2 weeks. | <code>1</code> | 7.3.0 |
+| **`weeksOfTheYear`** | <code>number[]</code>                                               | Limits a yearly recurrence to specific ISO week numbers (1 to 53).                                                                                                      |                | 7.3.0 |
 
 
-#### EchoOptions
+#### ModifyEventWithPromptOptions
 
-Input payload for the echo call.
-
-| Prop        | Type                | Description                                                           |
-| ----------- | ------------------- | --------------------------------------------------------------------- |
-| **`value`** | <code>string</code> | Arbitrary text that should be returned by native/web implementations. |
+| Prop     | Type                | Description                         | Since |
+| -------- | ------------------- | ----------------------------------- | ----- |
+| **`id`** | <code>string</code> | The ID of the event to be modified. | 7.1.0 |
 
 
-#### PluginVersionResult
+#### CreateEventOptions
 
-Plugin version payload.
+| Prop               | Type                                                                | Description                                                                                                                                            | Default           | Since |
+| ------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ----- |
+| **`alerts`**       | <code>number[]</code>                                               | Alert times in minutes relative to the event start. Use negative numbers for alerts before the start, and positive numbers for alerts after the start. |                   | 7.1.0 |
+| **`attendees`**    | <code>EventGuest[]</code>                                           | The event guests.                                                                                                                                      |                   | 7.1.0 |
+| **`availability`** | <code><a href="#eventavailability">EventAvailability</a></code>     |                                                                                                                                                        |                   | 7.1.0 |
+| **`calendarId`**   | <code>string</code>                                                 |                                                                                                                                                        |                   | 0.1.0 |
+| **`color`**        | <code>string</code>                                                 |                                                                                                                                                        |                   | 7.1.0 |
+| **`commit`**       | <code>boolean</code>                                                | Whether to save immediately (`true`) or batch changes for later (`false`).                                                                             | <code>true</code> | 7.1.0 |
+| **`description`**  | <code>string</code>                                                 |                                                                                                                                                        |                   | 7.1.0 |
+| **`duration`**     | <code>string</code>                                                 | Duration of the event in RFC2445 format.                                                                                                               |                   | 7.1.0 |
+| **`endDate`**      | <code>number</code>                                                 |                                                                                                                                                        |                   | 0.1.0 |
+| **`isAllDay`**     | <code>boolean</code>                                                |                                                                                                                                                        |                   | 0.1.0 |
+| **`location`**     | <code>string</code>                                                 |                                                                                                                                                        |                   | 0.1.0 |
+| **`organizer`**    | <code>string</code>                                                 | Email of the event organizer.                                                                                                                          |                   | 7.1.0 |
+| **`recurrence`**   | <code><a href="#eventrecurrencerule">EventRecurrenceRule</a></code> | Rules for creating a recurring event.                                                                                                                  |                   | 7.3.0 |
+| **`startDate`**    | <code>number</code>                                                 |                                                                                                                                                        |                   | 0.1.0 |
+| **`title`**        | <code>string</code>                                                 |                                                                                                                                                        |                   | 0.4.0 |
+| **`url`**          | <code>string</code>                                                 |                                                                                                                                                        |                   | 0.1.0 |
 
-| Prop          | Type                | Description                                                 |
-| ------------- | ------------------- | ----------------------------------------------------------- |
-| **`version`** | <code>string</code> | Version identifier returned by the platform implementation. |
+
+#### EventGuest
+
+| Prop        | Type                | Since |
+| ----------- | ------------------- | ----- |
+| **`name`**  | <code>string</code> | 7.1.0 |
+| **`email`** | <code>string</code> | 7.1.0 |
+
+
+#### ModifyEventOptions
+
+| Prop               | Type                                                                | Description                                                                                                                                            | Default                           | Since |
+| ------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- | ----- |
+| **`alerts`**       | <code>number[]</code>                                               | Alert times in minutes relative to the event start. Use negative numbers for alerts before the start, and positive numbers for alerts after the start. |                                   | 7.1.0 |
+| **`attendees`**    | <code>EventGuest[]</code>                                           | The event guests.                                                                                                                                      |                                   | 7.1.0 |
+| **`availability`** | <code><a href="#eventavailability">EventAvailability</a></code>     |                                                                                                                                                        |                                   | 7.1.0 |
+| **`calendarId`**   | <code>string</code>                                                 |                                                                                                                                                        |                                   | 0.1.0 |
+| **`color`**        | <code>string</code>                                                 |                                                                                                                                                        |                                   | 7.1.0 |
+| **`description`**  | <code>string</code>                                                 |                                                                                                                                                        |                                   | 7.1.0 |
+| **`duration`**     | <code>string</code>                                                 | Duration of the event in RFC2445 format.                                                                                                               |                                   | 7.1.0 |
+| **`endDate`**      | <code>number</code>                                                 |                                                                                                                                                        |                                   | 0.1.0 |
+| **`id`**           | <code>string</code>                                                 | The ID of the event to be modified.                                                                                                                    |                                   | 7.1.0 |
+| **`isAllDay`**     | <code>boolean</code>                                                |                                                                                                                                                        |                                   | 0.1.0 |
+| **`location`**     | <code>string</code>                                                 |                                                                                                                                                        |                                   | 0.1.0 |
+| **`recurrence`**   | <code><a href="#eventrecurrencerule">EventRecurrenceRule</a></code> | Rules for creating a recurring event.                                                                                                                  |                                   | 7.3.0 |
+| **`organizer`**    | <code>string</code>                                                 | Email of the event organizer.                                                                                                                          |                                   | 7.1.0 |
+| **`span`**         | <code><a href="#eventspan">EventSpan</a></code>                     | The span of modifications.                                                                                                                             | <code>EventSpan.THIS_EVENT</code> |       |
+| **`startDate`**    | <code>number</code>                                                 |                                                                                                                                                        |                                   | 0.1.0 |
+| **`title`**        | <code>string</code>                                                 |                                                                                                                                                        |                                   | 0.4.0 |
+| **`url`**          | <code>string</code>                                                 |                                                                                                                                                        |                                   | 0.1.0 |
+
+
+#### DeleteEventsByIdResult
+
+| Prop          | Type                  | Since |
+| ------------- | --------------------- | ----- |
+| **`deleted`** | <code>string[]</code> | 7.1.0 |
+| **`failed`**  | <code>string[]</code> | 7.1.0 |
+
+
+#### DeleteEventsByIdOptions
+
+| Prop       | Type                                            | Description           | Default                           | Since |
+| ---------- | ----------------------------------------------- | --------------------- | --------------------------------- | ----- |
+| **`ids`**  | <code>string[]</code>                           |                       |                                   | 7.1.0 |
+| **`span`** | <code><a href="#eventspan">EventSpan</a></code> | The span of deletion. | <code>EventSpan.THIS_EVENT</code> |       |
+
+
+#### DeleteEventOptions
+
+| Prop       | Type                                            | Description           | Default                           | Since |
+| ---------- | ----------------------------------------------- | --------------------- | --------------------------------- | ----- |
+| **`id`**   | <code>string</code>                             |                       |                                   | 7.1.0 |
+| **`span`** | <code><a href="#eventspan">EventSpan</a></code> | The span of deletion. | <code>EventSpan.THIS_EVENT</code> |       |
+
+
+#### DeleteEventWithPromptOptions
+
+| Prop                    | Type                                            | Description                         | Default                           | Since |
+| ----------------------- | ----------------------------------------------- | ----------------------------------- | --------------------------------- | ----- |
+| **`id`**                | <code>string</code>                             |                                     |                                   | 7.1.0 |
+| **`span`**              | <code><a href="#eventspan">EventSpan</a></code> | The span of deletion.               | <code>EventSpan.THIS_EVENT</code> |       |
+| **`title`**             | <code>string</code>                             | Title of the dialog.                |                                   | 7.1.0 |
+| **`message`**           | <code>string</code>                             | Message of the dialog.              |                                   | 7.1.0 |
+| **`confirmButtonText`** | <code>string</code>                             | Text to show on the confirm button. | <code>'Delete'</code>             | 7.1.0 |
+| **`cancelButtonText`**  | <code>string</code>                             | Text to show on the cancel button.  | <code>'Cancel'</code>             | 7.1.0 |
+
+
+#### CalendarEvent
+
+| Prop                            | Type                                                                                                                                                                                                                                          | Description                                         | Since |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ----- |
+| **`id`**                        | <code>string</code>                                                                                                                                                                                                                           |                                                     | 7.1.0 |
+| **`title`**                     | <code>string</code>                                                                                                                                                                                                                           |                                                     | 7.1.0 |
+| **`calendarId`**                | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`location`**                  | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`startDate`**                 | <code>number</code>                                                                                                                                                                                                                           |                                                     | 7.1.0 |
+| **`endDate`**                   | <code>number</code>                                                                                                                                                                                                                           |                                                     | 7.1.0 |
+| **`isAllDay`**                  | <code>boolean</code>                                                                                                                                                                                                                          |                                                     | 7.1.0 |
+| **`alerts`**                    | <code>number[]</code>                                                                                                                                                                                                                         | Alert times in minutes relative to the event start. | 7.1.0 |
+| **`url`**                       | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`description`**               | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`availability`**              | <code><a href="#eventavailability">EventAvailability</a> \| null</code>                                                                                                                                                                       |                                                     | 7.1.0 |
+| **`organizer`**                 | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`color`**                     | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`duration`**                  | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`isDetached`**                | <code>boolean \| null</code>                                                                                                                                                                                                                  |                                                     | 7.1.0 |
+| **`birthdayContactIdentifier`** | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`status`**                    | <code><a href="#eventstatus">EventStatus</a> \| null</code>                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`creationDate`**              | <code>number \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`lastModifiedDate`**          | <code>number \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+| **`attendees`**                 | <code>{ email: string \| null; name: string \| null; role: <a href="#attendeerole">AttendeeRole</a> \| null; status: <a href="#attendeestatus">AttendeeStatus</a> \| null; type: <a href="#attendeetype">AttendeeType</a> \| null; }[]</code> |                                                     | 7.1.0 |
+| **`timezone`**                  | <code>string \| null</code>                                                                                                                                                                                                                   |                                                     | 7.1.0 |
+
+
+#### ListEventsInRangeOptions
+
+| Prop       | Type                | Description                    | Since |
+| ---------- | ------------------- | ------------------------------ | ----- |
+| **`from`** | <code>number</code> | The timestamp in milliseconds. | 7.1.0 |
+| **`to`**   | <code>number</code> | The timestamp in milliseconds. | 7.1.0 |
+
+
+#### Calendar
+
+| Prop                             | Type                                                              | Description                                                        | Since |
+| -------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------ | ----- |
+| **`id`**                         | <code>string</code>                                               |                                                                    | 7.1.0 |
+| **`title`**                      | <code>string</code>                                               |                                                                    | 7.1.0 |
+| **`internalTitle`**              | <code>string \| null</code>                                       | Internal name of the calendar (`CalendarContract.Calendars.NAME`). | 7.1.0 |
+| **`color`**                      | <code>string</code>                                               |                                                                    | 7.1.0 |
+| **`isImmutable`**                | <code>boolean \| null</code>                                      |                                                                    | 7.1.0 |
+| **`allowsContentModifications`** | <code>boolean \| null</code>                                      |                                                                    | 7.1.0 |
+| **`type`**                       | <code><a href="#calendartype">CalendarType</a> \| null</code>     |                                                                    | 7.1.0 |
+| **`isSubscribed`**               | <code>boolean \| null</code>                                      |                                                                    | 7.1.0 |
+| **`source`**                     | <code><a href="#calendarsource">CalendarSource</a> \| null</code> |                                                                    | 7.1.0 |
+| **`visible`**                    | <code>boolean \| null</code>                                      | Indicates if the events from this calendar should be shown.        | 7.1.0 |
+| **`accountName`**                | <code>string \| null</code>                                       | The account under which the calendar is registered.                | 7.1.0 |
+| **`ownerAccount`**               | <code>string \| null</code>                                       | The owner of the calendar.                                         | 7.1.0 |
+| **`maxReminders`**               | <code>number \| null</code>                                       | Maximum number of reminders allowed per event.                     | 7.1.0 |
+| **`location`**                   | <code>string \| null</code>                                       |                                                                    | 7.1.0 |
+
+
+#### CalendarSource
+
+| Prop        | Type                                                              | Since |
+| ----------- | ----------------------------------------------------------------- | ----- |
+| **`type`**  | <code><a href="#calendarsourcetype">CalendarSourceType</a></code> | 7.1.0 |
+| **`id`**    | <code>string</code>                                               | 7.1.0 |
+| **`title`** | <code>string</code>                                               | 7.1.0 |
+
+
+#### SelectCalendarsWithPromptOptions
+
+| Prop               | Type                                                                                | Description                | Default                                                | Since |
+| ------------------ | ----------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------ | ----- |
+| **`displayStyle`** | <code><a href="#calendarchooserdisplaystyle">CalendarChooserDisplayStyle</a></code> |                            | <code>CalendarChooserDisplayStyle.ALL_CALENDARS</code> | 7.1.0 |
+| **`multiple`**     | <code>boolean</code>                                                                | Allow multiple selections. | <code>false</code>                                     | 7.1.0 |
+
+
+#### OpenCalendarOptions
+
+| Prop       | Type                | Default                 | Since |
+| ---------- | ------------------- | ----------------------- | ----- |
+| **`date`** | <code>number</code> | <code>Date.now()</code> | 7.1.0 |
+
+
+#### CreateCalendarOptions
+
+| Prop               | Type                | Description                                                | Since |
+| ------------------ | ------------------- | ---------------------------------------------------------- | ----- |
+| **`title`**        | <code>string</code> |                                                            | 5.2.0 |
+| **`color`**        | <code>string</code> | The color of the calendar. Should be provided on Android.  | 5.2.0 |
+| **`sourceId`**     | <code>string</code> |                                                            | 5.2.0 |
+| **`accountName`**  | <code>string</code> | Only needed on Android. Typically set to an email address. | 7.1.0 |
+| **`ownerAccount`** | <code>string</code> | Only needed on Android. Typically set to an email address. | 7.1.0 |
+
+
+#### DeleteCalendarOptions
+
+| Prop     | Type                | Since |
+| -------- | ------------------- | ----- |
+| **`id`** | <code>string</code> | 7.1.0 |
+
+
+#### ModifyCalendarOptions
+
+| Prop        | Type                | Since |
+| ----------- | ------------------- | ----- |
+| **`id`**    | <code>string</code> | 7.2.0 |
+| **`title`** | <code>string</code> | 7.2.0 |
+| **`color`** | <code>string</code> | 7.2.0 |
+
+
+#### CreateReminderOptions
+
+| Prop                 | Type                                                      | Description                                                                                                                                               | Since |
+| -------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **`title`**          | <code>string</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`listId`**         | <code>string</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`priority`**       | <code>number</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`isCompleted`**    | <code>boolean</code>                                      |                                                                                                                                                           | 7.1.0 |
+| **`startDate`**      | <code>number</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`dueDate`**        | <code>number</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`completionDate`** | <code>number</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`notes`**          | <code>string</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`url`**            | <code>string</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`location`**       | <code>string</code>                                       |                                                                                                                                                           | 7.1.0 |
+| **`recurrence`**     | <code><a href="#recurrencerule">RecurrenceRule</a></code> |                                                                                                                                                           | 7.1.0 |
+| **`alerts`**         | <code>number[]</code>                                     | Alert times in minutes relative to the reminder start. Use negative numbers for alerts before the start, and positive numbers for alerts after the start. | 7.1.0 |
+
+
+#### RecurrenceRule
+
+| Prop            | Type                                                                | Description                                                                        | Since |
+| --------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----- |
+| **`frequency`** | <code><a href="#recurrencefrequency">RecurrenceFrequency</a></code> |                                                                                    | 7.1.0 |
+| **`interval`**  | <code>number</code>                                                 | How often it repeats (e.g. 1 for every occurrence, 2 for every second occurrence). | 7.1.0 |
+| **`end`**       | <code>number</code>                                                 | Timestamp of when the recurrence ends.                                             | 7.1.0 |
+
+
+#### DeleteRemindersByIdResult
+
+| Prop          | Type                  | Since |
+| ------------- | --------------------- | ----- |
+| **`deleted`** | <code>string[]</code> | 7.1.0 |
+| **`failed`**  | <code>string[]</code> | 7.1.0 |
+
+
+#### DeleteRemindersByIdOptions
+
+| Prop      | Type                  | Since |
+| --------- | --------------------- | ----- |
+| **`ids`** | <code>string[]</code> | 7.1.0 |
+
+
+#### DeleteReminderOptions
+
+| Prop     | Type                | Since |
+| -------- | ------------------- | ----- |
+| **`id`** | <code>string</code> | 7.1.0 |
+
+
+#### ModifyReminderOptions
+
+| Prop                 | Type                                                      | Description                                                                                                                                                                                   | Since |
+| -------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **`id`**             | <code>string</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`title`**          | <code>string</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`listId`**         | <code>string</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`priority`**       | <code>number</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`isCompleted`**    | <code>boolean</code>                                      |                                                                                                                                                                                               | 7.1.0 |
+| **`startDate`**      | <code>number</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`dueDate`**        | <code>number</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`completionDate`** | <code>number</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`notes`**          | <code>string</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`url`**            | <code>string</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`location`**       | <code>string</code>                                       |                                                                                                                                                                                               | 7.1.0 |
+| **`recurrence`**     | <code><a href="#recurrencerule">RecurrenceRule</a></code> |                                                                                                                                                                                               | 7.1.0 |
+| **`alerts`**         | <code>number[]</code>                                     | Alert times in minutes relative to the reminder start. Use negative numbers for alerts before the start, and positive numbers for alerts after the start. On iOS only 2 alerts are supported. | 7.1.0 |
+
+
+#### Reminder
+
+| Prop                 | Type                          | Since |
+| -------------------- | ----------------------------- | ----- |
+| **`id`**             | <code>string</code>           | 7.1.0 |
+| **`title`**          | <code>string \| null</code>   | 7.1.0 |
+| **`listId`**         | <code>string \| null</code>   | 7.1.0 |
+| **`isCompleted`**    | <code>boolean</code>          | 7.1.0 |
+| **`priority`**       | <code>number \| null</code>   | 7.1.0 |
+| **`notes`**          | <code>string \| null</code>   | 7.1.0 |
+| **`location`**       | <code>string \| null</code>   | 7.1.0 |
+| **`url`**            | <code>string \| null</code>   | 7.1.0 |
+| **`startDate`**      | <code>number \| null</code>   | 7.1.0 |
+| **`dueDate`**        | <code>number \| null</code>   | 7.1.0 |
+| **`completionDate`** | <code>number \| null</code>   | 7.1.0 |
+| **`recurrence`**     | <code>RecurrenceRule[]</code> | 7.1.0 |
+| **`alerts`**         | <code>number[]</code>         | 7.1.0 |
+
+
+#### GetReminderByIdOptions
+
+| Prop     | Type                | Since |
+| -------- | ------------------- | ----- |
+| **`id`** | <code>string</code> | 7.1.0 |
+
+
+#### GetRemindersFromListsOptions
+
+| Prop          | Type                  | Since |
+| ------------- | --------------------- | ----- |
+| **`listIds`** | <code>string[]</code> | 7.1.0 |
+
+
+#### DeleteReminderWithPromptOptions
+
+| Prop                    | Type                | Description                         | Default               | Since |
+| ----------------------- | ------------------- | ----------------------------------- | --------------------- | ----- |
+| **`id`**                | <code>string</code> |                                     |                       | 7.2.0 |
+| **`title`**             | <code>string</code> | Title of the dialog.                |                       | 7.2.0 |
+| **`message`**           | <code>string</code> | Message of the dialog.              |                       | 7.2.0 |
+| **`confirmButtonText`** | <code>string</code> | Text to show on the confirm button. | <code>'Delete'</code> | 7.2.0 |
+| **`cancelButtonText`**  | <code>string</code> | Text to show on the cancel button.  | <code>'Cancel'</code> | 7.2.0 |
+
+
+### Type Aliases
+
+
+#### PermissionState
+
+<code>'prompt' | 'prompt-with-rationale' | 'granted' | 'denied'</code>
+
+
+#### CheckAllPermissionsResult
+
+<code><a href="#record">Record</a>&lt;<a href="#calendarpermissionscope">CalendarPermissionScope</a>, <a href="#permissionstate">PermissionState</a>&gt;</code>
+
+
+#### Record
+
+Construct a type with a set of properties K of type T
+
+<code>{ [P in K]: T; }</code>
+
+
+#### RequestAllPermissionsResult
+
+<code><a href="#checkallpermissionsresult">CheckAllPermissionsResult</a></code>
+
+
+#### RecurrenceFrequency
+
+<code>'daily' | 'weekly' | 'monthly' | 'yearly'</code>
+
+
+#### EventEditAction
+
+<code>'canceled' | 'saved' | 'deleted'</code>
+
+
+#### RemindersList
+
+<code><a href="#calendar">Calendar</a></code>
+
+
+### Enums
+
+
+#### CalendarPermissionScope
+
+| Members               | Value                         | Description                                                  | Since |
+| --------------------- | ----------------------------- | ------------------------------------------------------------ | ----- |
+| **`READ_CALENDAR`**   | <code>'readCalendar'</code>   | Permission required for reading calendar events.             | 7.1.0 |
+| **`READ_REMINDERS`**  | <code>'readReminders'</code>  | Permission required for reading reminders.                   | 7.1.0 |
+| **`WRITE_CALENDAR`**  | <code>'writeCalendar'</code>  | Permission required for adding or modifying calendar events. | 7.1.0 |
+| **`WRITE_REMINDERS`** | <code>'writeReminders'</code> | Permission required for adding or modifying reminders.       | 7.1.0 |
+
+
+#### EventAvailability
+
+| Members             | Value           | Since |
+| ------------------- | --------------- | ----- |
+| **`NOT_SUPPORTED`** | <code>-1</code> | 7.1.0 |
+| **`BUSY`**          |                 | 7.1.0 |
+| **`FREE`**          |                 | 7.1.0 |
+| **`TENTATIVE`**     |                 | 7.1.0 |
+| **`UNAVAILABLE`**   |                 | 7.1.0 |
+
+
+#### EventSpan
+
+| Members                      | Since |
+| ---------------------------- | ----- |
+| **`THIS_EVENT`**             | 7.1.0 |
+| **`THIS_AND_FUTURE_EVENTS`** | 7.1.0 |
+
+
+#### EventStatus
+
+| Members         | Value                    | Since |
+| --------------- | ------------------------ | ----- |
+| **`NONE`**      | <code>'none'</code>      | 7.1.0 |
+| **`CONFIRMED`** | <code>'confirmed'</code> | 7.1.0 |
+| **`TENTATIVE`** | <code>'tentative'</code> | 7.1.0 |
+| **`CANCELED`**  | <code>'canceled'</code>  | 7.1.0 |
+
+
+#### AttendeeRole
+
+| Members               | Value                         | Since |
+| --------------------- | ----------------------------- | ----- |
+| **`UNKNOWN`**         | <code>'unknown'</code>        | 7.1.0 |
+| **`REQUIRED`**        | <code>'required'</code>       | 7.1.0 |
+| **`OPTIONAL`**        | <code>'optional'</code>       | 7.1.0 |
+| **`CHAIR`**           | <code>'chair'</code>          | 7.1.0 |
+| **`NON_PARTICIPANT`** | <code>'nonParticipant'</code> | 7.1.0 |
+| **`ATTENDEE`**        | <code>'attendee'</code>       | 7.1.0 |
+| **`ORGANIZER`**       | <code>'organizer'</code>      | 7.1.0 |
+| **`PERFORMER`**       | <code>'performer'</code>      | 7.1.0 |
+| **`SPEAKER`**         | <code>'speaker'</code>        | 7.1.0 |
+
+
+#### AttendeeStatus
+
+| Members          | Value                    | Since |
+| ---------------- | ------------------------ | ----- |
+| **`NONE`**       | <code>'none'</code>      | 7.1.0 |
+| **`ACCEPTED`**   | <code>'accepted'</code>  | 7.1.0 |
+| **`DECLINED`**   | <code>'declined'</code>  | 7.1.0 |
+| **`INVITED`**    | <code>'invited'</code>   | 7.1.0 |
+| **`UNKNOWN`**    | <code>'unknown'</code>   | 7.1.0 |
+| **`PENDING`**    | <code>'pending'</code>   | 7.1.0 |
+| **`TENTATIVE`**  | <code>'tentative'</code> | 7.1.0 |
+| **`DELEGATED`**  | <code>'delegated'</code> | 7.1.0 |
+| **`COMPLETED`**  | <code>'completed'</code> | 7.1.0 |
+| **`IN_PROCESS`** | <code>'inProcess'</code> | 7.1.0 |
+
+
+#### AttendeeType
+
+| Members        | Value                   | Since |
+| -------------- | ----------------------- | ----- |
+| **`UNKNOWN`**  | <code>'unknown'</code>  | 7.1.0 |
+| **`PERSON`**   | <code>'person'</code>   | 7.1.0 |
+| **`ROOM`**     | <code>'room'</code>     | 7.1.0 |
+| **`RESOURCE`** | <code>'resource'</code> | 7.1.0 |
+| **`GROUP`**    | <code>'group'</code>    | 7.1.0 |
+| **`REQUIRED`** | <code>'required'</code> | 7.1.0 |
+| **`NONE`**     | <code>'none'</code>     | 7.1.0 |
+| **`OPTIONAL`** | <code>'optional'</code> | 7.1.0 |
+
+
+#### CalendarType
+
+| Members            | Since |
+| ------------------ | ----- |
+| **`LOCAL`**        | 7.1.0 |
+| **`CAL_DAV`**      | 7.1.0 |
+| **`EXCHANGE`**     | 7.1.0 |
+| **`SUBSCRIPTION`** | 7.1.0 |
+| **`BIRTHDAY`**     | 7.1.0 |
+
+
+#### CalendarSourceType
+
+| Members          | Since |
+| ---------------- | ----- |
+| **`LOCAL`**      | 7.1.0 |
+| **`EXCHANGE`**   | 7.1.0 |
+| **`CAL_DAV`**    | 7.1.0 |
+| **`MOBILE_ME`**  | 7.1.0 |
+| **`SUBSCRIBED`** | 7.1.0 |
+| **`BIRTHDAYS`**  | 7.1.0 |
+
+
+#### CalendarChooserDisplayStyle
+
+| Members                       | Since |
+| ----------------------------- | ----- |
+| **`ALL_CALENDARS`**           | 0.2.0 |
+| **`WRITABLE_CALENDARS_ONLY`** | 0.2.0 |
 
 </docgen-api>
+
+## License
+
+MPL-2.0. Portions of this package are derived from `@ebarooni/capacitor-calendar`; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

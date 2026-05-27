@@ -1,0 +1,27 @@
+package app.capgo.calendar.models.inputs
+
+import com.getcapacitor.PluginCall
+import app.capgo.calendar.PluginError
+import app.capgo.calendar.models.data.EventGuest
+import app.capgo.calendar.models.data.EventRecurrenceRule
+import app.capgo.calendar.utils.ImplementationHelper
+
+data class ModifyEvent(
+    private val call: PluginCall,
+) {
+    val id: Long = call.getString("id")?.toLong() ?: throw PluginError.MissingId
+    val title: String? = call.getString("title")
+    val calendarId: Long? = call.getString("calendarId")?.toLong()
+    val location: String? = call.getString("location")
+    val startDate: Long? = call.getLong("startDate")?.let { ImplementationHelper.getCalendarFromTimestamp(it).timeInMillis }
+    val endDate: Long? = call.getLong("endDate")?.let { ImplementationHelper.getCalendarFromTimestamp(it).timeInMillis }
+    val isAllDay: Int? = call.getBoolean("isAllDay")?.let { if (it) 1 else 0 }
+    val alerts: List<Int>? = ImplementationHelper.jsArrayToIntArray(call.getArray("alerts"))
+    val description: String? = call.getString("description")
+    val availability: Int? = call.getInt("availability")
+    val organizer: String? = call.getString("organizer")
+    val color: Int? = ImplementationHelper.hexToColorInt(call.getString("color"))
+    val duration: String? = call.getString("duration")
+    val attendees: List<EventGuest>? = ImplementationHelper.eventGuestsFromCall(call)
+    val recurrence: EventRecurrenceRule? = call.getObject("recurrence")?.let { EventRecurrenceRule.parseRecurrence(it) }
+}

@@ -50,7 +50,7 @@ npx cap sync
 
 |                                                     iOS                                                     |                                                       Android                                                       |
 | :---------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
-|        ![iOS demo of native calendar event creation](assets/demo/ios-demo.gif)        |        ![Android demo of native calendar event creation](assets/demo/android-demo.gif)        |
+|        ![iOS demo of native calendar event creation](assets/demo/ios-demo.webp)        |        ![Android demo of native calendar event creation](assets/demo/android-demo.webp)        |
 
 ## Setup
 

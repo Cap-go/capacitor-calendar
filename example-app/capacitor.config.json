@@ -1,5 +1,18 @@
 {
   "appId": "app.capgo.calendar.example",
   "appName": "Capgo Calendar Example",
-  "webDir": "dist"
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    },
+    "CapacitorUpdater": {
+      "appId": "app.capgo.calendar.example",
+      "autoUpdate": true,
+      "autoSplashscreen": true,
+      "directUpdate": "always",
+      "defaultChannel": "production",
+      "version": "8.0.1"
+    }
+  }
 }

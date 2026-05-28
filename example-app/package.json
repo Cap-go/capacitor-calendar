@@ -9,10 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@capacitor/core": "^8.3.4",
     "@capacitor/android": "^8.3.4",
+    "@capacitor/core": "^8.3.4",
     "@capacitor/ios": "^8.3.4",
-    "@capgo/capacitor-calendar": "file:.."
+    "@capgo/capacitor-calendar": "file:..",
+    "@capgo/capacitor-updater": "^8.47.4"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.3.4",

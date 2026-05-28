@@ -1,5 +1,6 @@
 import './style.css';
 import { CapacitorCalendar, CalendarPermissionScope } from '@capgo/capacitor-calendar';
+import { CapacitorUpdater } from '@capgo/capacitor-updater';
 
 const output = document.getElementById('plugin-output');
 const eventTitleInput = document.getElementById('event-title');
@@ -67,4 +68,8 @@ listEventsButton.addEventListener('click', () => {
       to: Date.now() + 7 * 24 * 60 * 60 * 1000,
     }),
   );
+});
+
+void CapacitorUpdater.notifyAppReady().catch((error) => {
+  console.error('CapacitorUpdater.notifyAppReady failed', error);
 });

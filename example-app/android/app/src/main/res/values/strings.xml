@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Capgo Calendar Example</string>
+    <string name="title_activity_main">Capgo Calendar Example</string>
+    <string name="package_name">app.capgo.calendar.example</string>
+    <string name="custom_url_scheme">app.capgo.calendar.example</string>
+</resources>

@@ -3,13 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f766e" />
     <title>@capgo/capacitor-calendar Example</title>
+    <link rel="icon" href="/app-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <main class="container">
-      <h1>@capgo/capacitor-calendar</h1>
-      <p class="lead">Calendar and reminder bridge smoke test.</p>
+      <header class="app-header">
+        <img class="app-logo" src="/app-icon.svg" alt="" width="68" height="68" />
+        <div>
+          <h1>@capgo/capacitor-calendar</h1>
+          <p class="lead">Calendar and reminder bridge smoke test.</p>
+        </div>
+      </header>
 
       <label for="event-title">Event title</label>
       <input id="event-title" type="text" value="Capgo calendar test" />

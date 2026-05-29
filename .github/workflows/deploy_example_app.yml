@@ -125,6 +125,19 @@ jobs:
         env:
           CAPGO_TOKEN: ${{ secrets.CAPGO_TOKEN }}
 
+      - name: Update Capgo dashboard icon
+        working-directory: example-app
+        run: |
+          if [[ -z "${CAPGO_TOKEN:-}" ]]; then
+            echo "Skipping dashboard icon update; CAPGO_ADMIN_TOKEN is not configured."
+            exit 0
+          fi
+
+          bunx @capgo/cli@7 app set app.capgo.calendar.example \
+            --icon public/icon-512.png
+        env:
+          CAPGO_TOKEN: ${{ secrets.CAPGO_ADMIN_TOKEN }}
+
       - name: Deploy to Capgo
         working-directory: example-app
         run: |

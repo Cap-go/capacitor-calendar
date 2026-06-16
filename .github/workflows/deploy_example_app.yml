@@ -68,7 +68,7 @@ jobs:
           comment="${INPUT_COMMENT:-}"
           release_tag="${RELEASE_TAG:-}"
           repo_name="${GITHUB_REPOSITORY##*/}"
-          base_bundle="$(bun -e "const fs = require('fs'); const root = JSON.parse(fs.readFileSync('package.json', 'utf8')); const example = JSON.parse(fs.readFileSync('example-app/package.json', 'utf8')); const version = [example.version, root.version].find((value) => value && value !== '0.0.0'); console.log(version || '');")"
+          base_bundle="$(bun -e "const fs = require('fs'); const cfg = fs.readFileSync('example-app/capacitor.config.ts', 'utf8'); const m = cfg.match(/const\\s+nativeVersion\\s*=\\s*['\\\"]([^'\\\"]+)['\\\"]/); if (m?.[1]) { console.log(m[1]); process.exit(0); } const root = JSON.parse(fs.readFileSync('package.json', 'utf8')); const example = JSON.parse(fs.readFileSync('example-app/package.json', 'utf8')); const version = [example.version, root.version].find((value) => value && value !== '0.0.0'); console.log(version || '');")"
 
           next_bundle_version() {
             bun -e 'const base = process.argv[1]; const run = Number(process.argv[2] || 0); const match = base.match(/^(\d+)\.(\d+)\.(\d+)/); if (!match) { console.log(base); process.exit(0); } const [, major, minor, patch] = match; console.log(`${major}.${minor}.${Number(patch) + Math.max(run, 1)}`);' "$1" "${GITHUB_RUN_NUMBER:-0}"

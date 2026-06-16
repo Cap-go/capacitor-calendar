@@ -46,3 +46,7 @@ Run `bun run check:wiring` after changing plugin names, package IDs, podspecs, o
 - iOS must continue to support both CocoaPods (`CapgoCapacitorCalendar.podspec`) and Swift Package Manager (`Package.swift`).
 - API docs in `README.md` are generated from TypeScript comments; update source JSDoc and run `bun run docgen`.
 - Keep the upstream MIT attribution in `THIRD_PARTY_NOTICES.md` for code derived from `ebarooni/capacitor-calendar`.
+
+## Timeout Policy
+
+- Keep CI, script, and runtime timeouts at 10 minutes or less. Use `timeout-minutes: 10` or lower in GitHub Actions and cap timeout values at `600000` ms, `600` seconds, or `10m` unless explicitly requested.

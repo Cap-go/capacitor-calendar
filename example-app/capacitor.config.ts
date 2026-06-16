@@ -1,6 +1,6 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
-import rootPkg from '../package.json';
+const nativeVersion = '8.0.3';
 
 const config: CapacitorConfig = {
   appId: 'app.capgo.calendar.example',
@@ -15,7 +15,7 @@ const config: CapacitorConfig = {
       autoUpdate: true,
       autoSplashscreen: true,
       directUpdate: 'always',
-      version: rootPkg.version,
+      version: nativeVersion,
     },
   },
 };

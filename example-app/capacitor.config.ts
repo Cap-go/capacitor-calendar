@@ -12,7 +12,7 @@ const nativeVersion = rootPkg.version || pkg.version;
 
 const config: CapacitorConfig = {
   appId: 'app.capgo.calendar.example',
-  appName: 'Capgo Calendar Example',
+  appName: '@capgo/capacitor-calendar',
   webDir: 'dist',
   plugins: {
     SplashScreen: {

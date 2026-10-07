@@ -1,20 +1,28 @@
 # @capgo/capacitor-calendar
 
-<a href="https://capgo.app/">
-  <img
-    src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-calendar"
-    alt="Capgo - Instant updates for Capacitor"
-  />
-</a>
+Create, read, update and delete calendar events from your Capacitor app, or open the native event editor, on iOS and Android. On iOS you also get full access to Reminders.
+
+<a href="https://capgo.app/?ref=plugin_calendar"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-calendar" alt="Capgo - Instant updates for Capacitor" /></a>
 
 <div align="center">
-  <h2>
-    <a href="https://capgo.app/?ref=plugin_calendar">Get Instant updates for your App with Capgo</a>
-  </h2>
-  <h2>
-    <a href="https://capgo.app/consulting/?ref=plugin_calendar">Missing a feature? We'll build the plugin for you</a>
-  </h2>
+  <p><b>Capgo</b>: open-source live updates for Ionic and Capacitor apps. Ship OTA fixes and features instantly, without waiting for app store review.</p>
+  <h2><a href="https://capgo.app/register/?ref=plugin_calendar">➡️ Get started for free</a></h2>
+  <p>14-day unlimited free trial. No credit card required</p>
+  <p><a href="https://capgo.app/consulting/?ref=plugin_calendar">Missing a feature? We'll build the plugin for you 💪</a></p>
 </div>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Cap-go/capacitor-calendar/main/.github/assets/readme-demo.webp" alt="iOS demo of the example app creating an event with the native calendar editor" width="300" />
+</p>
+
+## Key features
+
+- **Native editor**: `createEventWithPrompt()`, `modifyEventWithPrompt()` and `deleteEventWithPrompt()` open the system UI.
+- **Events API**: `createEvent()`, `modifyEvent()`, `deleteEvent()`, `deleteEventsById()` and `listEventsInRange()`.
+- **Calendars**: `listCalendars()`, `getDefaultCalendar()`, `createCalendar()`, `modifyCalendar()` and `deleteCalendar()`.
+- **Reminders on iOS**: `createReminder()`, `modifyReminder()`, `getRemindersFromLists()` and more.
+- **Fine-grained permissions**: read-only, write-only and full calendar access, plus reminders access.
+- **Platforms**: iOS and Android. iOS uses EventKit, Android uses `CalendarContract`. Reminders are iOS only. Not available on web.
 
 [![npm version](https://img.shields.io/npm/v/@capgo/capacitor-calendar.svg)](https://www.npmjs.com/package/@capgo/capacitor-calendar)
 [![npm downloads](https://img.shields.io/npm/dm/@capgo/capacitor-calendar.svg)](https://www.npmjs.com/package/@capgo/capacitor-calendar)

@@ -17,11 +17,11 @@ Create, read, update and delete calendar events from your Capacitor app, or open
 
 ## Key features
 
-- **Native editor**: `createEventWithPrompt()`, `modifyEventWithPrompt()` and `deleteEventWithPrompt()` open the system UI.
+- **Native editor**: `createEventWithPrompt()` and `modifyEventWithPrompt()` open the system event editor. `deleteEventWithPrompt()` asks for confirmation, with a plugin dialog on Android.
 - **Events API**: `createEvent()`, `modifyEvent()`, `deleteEvent()`, `deleteEventsById()` and `listEventsInRange()`.
 - **Calendars**: `listCalendars()`, `getDefaultCalendar()`, `createCalendar()`, `modifyCalendar()` and `deleteCalendar()`.
 - **Reminders on iOS**: `createReminder()`, `modifyReminder()`, `getRemindersFromLists()` and more.
-- **Fine-grained permissions**: read-only, write-only and full calendar access, plus reminders access.
+- **Fine-grained permissions**: write-only and full calendar access, read-only access on Android, plus reminders access.
 - **Platforms**: iOS and Android. iOS uses EventKit, Android uses `CalendarContract`. Reminders are iOS only. Not available on web.
 
 [![npm version](https://img.shields.io/npm/v/@capgo/capacitor-calendar.svg)](https://www.npmjs.com/package/@capgo/capacitor-calendar)

@@ -85,7 +85,7 @@ npx cap sync
 
 |                                                     iOS                                                     |                                                       Android                                                       |
 | :---------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
-|        ![iOS demo of native calendar event creation](assets/demo/ios-demo.webp)        |        ![Android demo of native calendar event creation](assets/demo/android-demo.webp)        |
+|        ![iOS demo of native calendar event creation](https://raw.githubusercontent.com/Cap-go/capacitor-calendar/main/assets/demo/ios-demo.webp)        |        ![Android demo of native calendar event creation](https://raw.githubusercontent.com/Cap-go/capacitor-calendar/main/assets/demo/android-demo.webp)        |
 
 ## Setup
 
